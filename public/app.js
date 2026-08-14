@@ -13,7 +13,7 @@ function tickSound(){if(!audioCtx)return;const osc=audioCtx.createOscillator(),g
 function startTicking(){initAudio();stopTicking();tickSound();tickTimer=setInterval(tickSound,1000);}
 function stopTicking(){if(tickTimer){clearInterval(tickTimer);tickTimer=null;}}
 function runPhaseTimer(startedAt,durationMs,elementId,callback){clearInterval(timerInterval);const tick=()=>{const remaining=Math.max(0,durationMs-(Date.now()-startedAt));$(elementId).textContent=Math.ceil(remaining/1000);if(remaining<=0){clearInterval(timerInterval);if(callback)callback();}};tick();timerInterval=setInterval(tick,100);}
-$("hostLoginBtn").onclick=()=>{const code=$("hostName").value.trim();if(!code)return toast("Please enter the Host Access Code.");socket.emit("hostLogin",{code});};
+$("hostLoginBtn").onclick=()=>{const code=$("hostName").value.trim();if(!code)return toast("Please enter the Host Access Code.");socket.emit("hostLogin",{name:code});};
 $("participantLoginBtn").onclick=()=>{const name=$("participantName").value.trim();if(!name)return toast("Please enter your name.");socket.emit("participantLogin",{name});};
 $("startBtn").onclick=()=>{initAudio();socket.emit("startSession");};
 $("resetBtn").onclick=()=>{if(confirm("Reset the quiz and clear all answers?"))socket.emit("resetQuiz");};
