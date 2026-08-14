@@ -7,48 +7,35 @@
   <link rel="stylesheet" href="/style.css">
 </head>
 <body>
-  <div class="bg-orb orb1"></div>
-  <div class="bg-orb orb2"></div>
-
+  <div class="bg-orb orb1"></div><div class="bg-orb orb2"></div>
   <main class="app">
     <header class="hero">
       <div class="flag-dot"></div>
       <p class="eyebrow">15 AUGUST 2026 • INDIA</p>
       <h1>AZADI <span>SPRINT</span> 2026</h1>
-      <p class="subtitle">Celebrate 80 Years of Independence with 8 Quick Questions.</p>
+      <p class="subtitle">Celebrate 80 Years of Independence with 10 Quick Questions.</p>
     </header>
 
     <section id="homeScreen" class="screen active">
       <div class="rules card">
         <h2>How it works</h2>
         <div class="rules-grid">
-          <div><b>01</b><span>8 Independence Day questions</span></div>
-          <div><b>02</b><span>15 seconds per question</span></div>
+          <div><b>01</b><span>10 Independence Day questions</span></div>
+          <div><b>02</b><span>20 seconds per question</span></div>
           <div><b>03</b><span>No multiple-choice options</span></div>
           <div><b>04</b><span>Answer as quickly as possible</span></div>
           <div><b>05</b><span>First valid answer gets Rank #1</span></div>
-          <div><b>06</b><span>8 question-wise winners</span></div>
+          <div><b>06</b><span>10 question-wise winners</span></div>
         </div>
       </div>
-
       <div class="login-grid">
         <div class="card login-card">
-          <div class="icon">🎙️</div>
-          <h2>Host Login</h2>
-          <p>For the two authorized quiz hosts.</p>
-          <select id="hostName">
-            <option value="">Select Host</option>
-            <option>Sejal T</option>
-            <option>Chandni M</option>
-            <option>Other</option>
-          </select>
+          <div class="icon">🎙️</div><h2>Host Login</h2><p>For the two authorized quiz hosts.</p>
+          <select id="hostName"><option value="">Select Host</option><option>Sejal T</option><option>Chandni M</option><option>Other</option></select>
           <button id="hostLoginBtn" class="primary">Enter as Host</button>
         </div>
-
         <div class="card login-card participant">
-          <div class="icon">🇮🇳</div>
-          <h2>Participant Login</h2>
-          <p>Enter your name to join the live quiz.</p>
+          <div class="icon">🇮🇳</div><h2>Participant Login</h2><p>Enter your name to join the live quiz.</p>
           <input id="participantName" maxlength="40" placeholder="Your full name">
           <button id="participantLoginBtn" class="primary">Join Quiz</button>
         </div>
@@ -56,84 +43,34 @@
     </section>
 
     <section id="hostScreen" class="screen">
-      <div class="topbar">
-        <div>
-          <span class="live-pill">HOST</span>
-          <h2>Host Control Room</h2>
-          <p id="hostWelcome"></p>
-        </div>
-        <button id="hostLogoutBtn" class="ghost">Exit</button>
-      </div>
-
+      <div class="topbar"><div><span class="live-pill">HOST</span><h2>Host Control Room</h2><p id="hostWelcome"></p></div><button id="hostLogoutBtn" class="ghost">Exit</button></div>
       <div class="card host-control">
-        <div>
-          <p class="eyebrow">SESSION STATUS</p>
-          <h2 id="hostStatus">Waiting to start</h2>
-          <p>Once started, each question runs automatically for 15 seconds.</p>
-        </div>
-        <button id="startBtn" class="start">START SESSION 🚀</button>
+        <div><p class="eyebrow">SESSION STATUS</p><h2 id="hostStatus">Waiting to start</h2><p id="hostPhaseText">Start the quiz when everyone has joined.</p></div>
+        <div class="host-actions"><button id="startBtn" class="start">START SESSION 🚀</button><button id="resetBtn" class="reset">RESET QUIZ</button></div>
       </div>
-
-      <div class="card">
-        <div class="section-title">
-          <h2>Live Answer Order</h2>
-          <span id="hostQuestionLabel">Question —</span>
-        </div>
-        <div id="liveAnswers" class="answer-list empty">Start the session to see answers here.</div>
-      </div>
-
-      <div id="resultsPanel" class="card hidden">
-        <div class="section-title">
-          <h2>Final Answer Sheet</h2>
-          <button id="printBtn" class="ghost">Print / Save PDF</button>
-        </div>
-        <div id="finalResults"></div>
-      </div>
+      <div class="card"><div class="section-title"><h2>Live Answer Order</h2><span id="hostQuestionLabel">Question —</span></div><div id="liveAnswers" class="answer-list empty">Start the session to see answers here.</div></div>
+      <div id="resultsPanel" class="card hidden"><div class="section-title"><h2>Final Answer Sheet</h2><button id="printBtn" class="ghost">Print / Save PDF</button></div><div id="finalResults"></div></div>
     </section>
 
     <section id="participantScreen" class="screen">
-      <div class="topbar">
-        <div>
-          <span class="live-pill">LIVE</span>
-          <h2 id="participantWelcome">Welcome!</h2>
-        </div>
-        <button id="participantLogoutBtn" class="ghost">Exit</button>
-      </div>
+      <div class="topbar"><div><span class="live-pill">LIVE</span><h2 id="participantWelcome">Welcome!</h2></div><button id="participantLogoutBtn" class="ghost">Exit</button></div>
+      <div id="waitingPanel" class="card waiting"><div class="big-flag">🇮🇳</div><h2>You're in!</h2><p>Wait for the host to start the quiz.</p><div class="pulse">● LIVE SESSION READY</div></div>
 
-      <div id="waitingPanel" class="card waiting">
-        <div class="big-flag">🇮🇳</div>
-        <h2>You're in!</h2>
-        <p>Wait for the host to start the quiz.</p>
-        <div class="pulse">● LIVE SESSION READY</div>
-      </div>
-
+      <div id="countdownPanel" class="card special-phase hidden"><p class="eyebrow">GET READY</p><div id="countdownNumber" class="mega-number">10</div><h2>Get ready!</h2></div>
+      <div id="letsStartPanel" class="card special-phase hidden"><div class="big-flag">🇮🇳</div><h1>LET'S START!</h1></div>
       <div id="questionPanel" class="card question-card hidden">
-        <div class="question-meta">
-          <span id="questionNumber">QUESTION 1 / 8</span>
-          <div class="timer" id="timer">15</div>
-        </div>
-        <h2 id="questionText">Question goes here</h2>
-        <div class="answer-row">
-          <input id="answerInput" maxlength="300" placeholder="Type your answer quickly...">
-          <button id="submitBtn" class="primary">SUBMIT</button>
-        </div>
+        <div class="question-meta"><span id="questionNumber">QUESTION 1 / 10</span><div class="timer" id="timer">20</div></div>
+        <h2 id="questionText">Question goes here</h2><p id="questionHint" class="hint"></p>
+        <div class="answer-row"><input id="answerInput" maxlength="300" placeholder="Type your answer quickly..."><button id="submitBtn" class="primary">SUBMIT</button></div>
         <p id="answerMessage" class="answer-message"></p>
       </div>
-
-      <div id="finishPanel" class="card finish hidden">
-        <div class="big-flag">🇮🇳</div>
-        <h1>Jai Hind!</h1>
-        <h2>Thank you for playing.</h2>
-        <p>Winners will be declared soon. Keep the spirit of freedom alive!</p>
-      </div>
+      <div id="answerPanel" class="card special-phase hidden"><p class="eyebrow">ANSWER</p><h2 id="answerText"></h2><div class="phase-progress" id="answerProgress">5</div></div>
+      <div id="readyPanel" class="card special-phase hidden"><div class="big-flag">🇮🇳</div><h1>BE READY FOR NEXT QUESTION</h1><div class="phase-progress" id="readyProgress">10</div></div>
+      <div id="finishPanel" class="card finish hidden"><div class="big-flag">🇮🇳</div><h1>Jai Hind!</h1><h2>Thank you for playing.</h2><p>Winners will be declared soon. Keep the spirit of freedom alive!</p></div>
     </section>
-
     <footer>Built for Independence Day 2026 • Jai Hind 🇮🇳</footer>
   </main>
-
   <div id="toast" class="toast"></div>
-
-  <script src="/socket.io/socket.io.js"></script>
-  <script src="/app.js"></script>
+  <script src="/socket.io/socket.io.js"></script><script src="/app.js"></script>
 </body>
 </html>
