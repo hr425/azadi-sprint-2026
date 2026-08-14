@@ -2,13 +2,14 @@
   "name": "independence-quiz-2026",
   "version": "1.0.0",
   "private": true,
-  "description": "Live 8-question Independence Day quiz with host and participant modes.",
+  "description": "Live 10-question Independence Day quiz with host and participant modes.",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
   },
   "dependencies": {
     "express": "^5.1.0",
+    "nodemailer": "^7.0.5",
     "socket.io": "^4.8.1"
   }
 }
