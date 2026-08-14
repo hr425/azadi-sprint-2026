@@ -13,13 +13,13 @@ const HOSTS = new Set(["Sejal T", "Chandni M"]);
 const QUESTIONS = [
   { text: "Who was the first Indian to hoist the national flag at the Red Fort after India became independent?", answer: "Jawaharlal Nehru" },
   { text: "Who gave the famous slogan, “Swaraj is my birthright, and I shall have it”?", answer: "Bal Gangadhar Tilak" },
-  { text: "Identify the place.", hint: "This place is in Punjab and became a powerful symbol of the freedom struggle after a tragic event in 1919.", image: "/q3.jpg", answer: "Jallianwala Bagh" },
+  { text: "Identify the place.", hint: "This place is in Punjab and became a powerful symbol of the freedom struggle after a tragic event in 1919.", image: "/Q3%20Puzzel%20Image.png", answer: "Jallianwala Bagh" },
   { text: "Which freedom movement began after Mahatma Gandhi gave the call of “Do or Die” in 1942?", answer: "Quit India Movement" },
   { text: "Where did Bhagat Singh and Batukeshwar Dutt throw bombs on 8 April 1929?", answer: "Central Legislative Assembly, New Delhi" },
-  { text: "Identify this place.", hint: "This historic monument in the heart of Delhi has witnessed the hoisting of the Indian national flag on Independence Day since 1947.", image: "/q6.jpg", answer: "Red Fort" },
+  { text: "Identify this place.", hint: "This historic monument in the heart of Delhi has witnessed the hoisting of the Indian national flag on Independence Day since 1947.", image: "/Q6%20Red%20Fort%20puzzle%20image.png", answer: "Red Fort" },
   { text: "Who was the first Indian woman president of the Indian National Congress?", answer: "Sarojini Naidu" },
-  { text: "Who is the freedom fighter shown in these historic photographs?", hint: "His journey took him from Calcutta to Germany and later to Southeast Asia, where he played a major role in India's struggle for independence.", image: "/q8.jpg", answer: "Subhas Chandra Bose" },
-  { text: "What historic movement is captured in these photographs?", hint: "It began in Gujarat and covered roughly 390 km on foot, challenging a British law that affected something found abundantly along India's coastline.", image: "/q9.jpg", answer: "Dandi March / Salt March" },
+  { text: "Who is the freedom fighter shown in these historic photographs?", hint: "His journey took him from Calcutta to Germany and later to Southeast Asia, where he played a major role in India's struggle for independence.", image: "/Q8%20Netaji%20image(s).jpg", answer: "Subhas Chandra Bose" },
+  { text: "What historic movement is captured in these photographs?", hint: "It began in Gujarat and covered roughly 390 km on foot, challenging a British law that affected something found abundantly along India's coastline.", image: "/Q9%20Dandi%20March%20collage.png", answer: "Dandi March / Salt March" },
   { text: "At the stroke of midnight on 15 August 1947, Jawaharlal Nehru delivered a historic speech. What was the name of that speech?", answer: "Tryst with Destiny" }
 ];
 
