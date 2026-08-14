@@ -13,7 +13,7 @@ function tickSound(){if(!audioCtx)return;const osc=audioCtx.createOscillator(),g
 function startTicking(){initAudio();stopTicking();tickSound();tickTimer=setInterval(tickSound,1000);}
 function stopTicking(){if(tickTimer){clearInterval(tickTimer);tickTimer=null;}}
 function runPhaseTimer(startedAt,durationMs,elementId,callback){clearInterval(timerInterval);const tick=()=>{const remaining=Math.max(0,durationMs-(Date.now()-startedAt));$(elementId).textContent=Math.ceil(remaining/1000);if(remaining<=0){clearInterval(timerInterval);if(callback)callback();}};tick();timerInterval=setInterval(tick,100);}
-$("hostLoginBtn").onclick=()=>{const name=$("hostName").value;if(!name)return toast("Please select a host.");socket.emit("requestHostOtp",{name});};
+$("hostLoginBtn").onclick=()=>{const code=$("hostName").value.trim();if(!code)return toast("Please enter the Host Access Code.");socket.emit("hostLogin",{code});};
 $("participantLoginBtn").onclick=()=>{const name=$("participantName").value.trim();if(!name)return toast("Please enter your name.");socket.emit("participantLogin",{name});};
 $("startBtn").onclick=()=>{initAudio();socket.emit("startSession");};
 $("resetBtn").onclick=()=>{if(confirm("Reset the quiz and clear all answers?"))socket.emit("resetQuiz");};
@@ -24,8 +24,7 @@ function submitAnswer(){if(answerLocked)return;const input=$("answerInput"),answ
 socket.on("connect",()=>console.log("Quiz server connected",socket.id));
 socket.on("connect_error",err=>{console.error("Quiz connection error",err);toast("Connecting to the quiz server… Please wait a moment and try again.");});
 socket.on("loginError",d=>toast(d.message));
-socket.on("hostOtpSent",d=>{const otp=window.prompt("A 6-digit Host password has been sent to hr@orthoimplantsindia.com. Enter the password:");if(otp===null)return;socket.emit("verifyHostOtp",{name:$("hostName").value,otp});});
-socket.on("hostLoggedIn",d=>{role="host";$("hostWelcome").textContent=`Logged in as ${d.name}`;showScreen("host");});
+socket.on("hostLoggedIn",d=>{role="host";$("hostWelcome").textContent="Host Access Granted";showScreen("host");});
 socket.on("participantLoggedIn",d=>{role="participant";$("participantWelcome").textContent=`Welcome, ${d.name}`;showScreen("participant");});
 socket.on("state",state=>{latestParticipants=state.participants||[];if(role==="host"){$("hostStatus").textContent=state.status==="finished"?"Quiz finished — results ready":state.status==="countdown"?"Starting soon…":state.status==="running"?`Question ${state.questionIndex+1} is live`:"Waiting to start";$("hostPhaseText").textContent=state.phase==="countdown"?"Countdown is running…":state.phase==="letsStart"?"Let's Start!":state.phase==="answer"?"Showing the answer…":state.phase==="ready"?"Get ready for the next question…":state.phase==="question"?"Participants are answering now.":"Start the quiz when everyone has joined.";$("startBtn").disabled=state.status!=="waiting";$("startBtn").classList.toggle("started",state.status!=="waiting");renderParticipants();}if(role==="participant"&&state.status==="waiting")showParticipantPanel("waitingPanel");});
 function renderParticipants(){const list=$("participantList");$("participantCount").textContent=latestParticipants.length;if(!latestParticipants.length){list.className="answer-list empty";list.textContent="No participants have joined yet.";return;}list.className="answer-list";list.innerHTML=latestParticipants.map((p,i)=>`<div class="answer-item"><div class="rank">${i+1}</div><div><div class="answer-name">${escapeHtml(p.name)}</div><div class="answer-time">Joined ${new Date(p.joinedAt).toLocaleTimeString()}</div></div></div>`).join("");}
